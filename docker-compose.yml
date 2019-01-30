@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+  web:
+    build: .
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 27017
+    volumes:
+      - .:/code
+    depends_on:
+      - db
