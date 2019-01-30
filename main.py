@@ -58,17 +58,17 @@ print()
 print("Insertando posts")
 result = posts.insert_many(new_posts)
 #Devuelve los ids de los Posts creados
-print("Devolvemos los ids de los objetos creados... {}".format{result.inserted_ids})
+print("Devolvemos los ids de los objetos creados... {}".format(result.inserted_ids))
 
 #Devolvemos todos los Posts y los mostramos
 print("Devolvemos todos los Posts y los mostramos")
 for post in posts.find():
-    print('Post con id {}, autor {}, texto {} y tags {}'.format(post.id, post.author, post.text, post.tags))
+    print('Post {}'.format(post))
 
 #Devolvemos todos los Posts filtrados por Autor 'Mike' y los mostramos
 print("Devolvemos todos los Posts filtrados por Autor 'Mike' y los mostramos")
 for post in posts.find({"author": "Mike"}):
-    print('Post con id {}, autor {}, texto {} y tags {}'.format(post.id, post.author, post.text, post.tags))
+    print('Post {}'.format(post))
 
 # Número de posts
 print('Número de posts {}'.format(posts.count_documents({})))
@@ -79,7 +79,7 @@ d = datetime.datetime(2009, 11, 12, 12)
 #Devolvemos todos los Posts menores que la fecha y los mostramos
 print("Filtrando posts menores que la fecha {}".format(d))
 for post in posts.find({"date": {"$lt": d}}).sort("author"):
-    print('Post con id {}, autor {}, texto {} y tags {}'.format(post.id, post.author, post.text, post.tags))
+    print('Post {}'.format(post))
 
 result = db.profiles.create_index([("user_id", ASCENDING)], unique=True)
 
